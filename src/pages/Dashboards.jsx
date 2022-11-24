@@ -10,6 +10,7 @@ const Dashboards = () => {
         justifyContent: "space-around",
         flexWrap: "wrap",
         marginTop: "2rem",
+        gap: "1.5rem",
       }}
     >
       {data.map((item, index) => {

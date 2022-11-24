@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Container from "../Styling/Container.styled";
 import LoginContainer, {
   Anchortag,
@@ -12,16 +12,18 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../helpers/firebase";
 import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
+import { AuthContext } from "../Context/AuthContextProvider";
 
 const Login = () => {
-  const [user, setUser] = useState({ email: "", password: "" });
+  const [userInfo, setUserInfo] = useState({ email: "", password: "" });
   const [check, setCheck] = useState(false);
+  const { user, setUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
   function handleChange(event) {
     const { name, value } = event.target;
-    setUser((prev) => {
+    setUserInfo((prev) => {
       return {
         ...prev,
         [name]: value,
@@ -32,6 +34,7 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toastSuccessNotify("Successfully logged in");
+      setUser(userInfo);
       navigate("/");
     } catch (error) {
       toastErrorNotify("Password or Email is incorrect");
@@ -44,7 +47,7 @@ const Login = () => {
     setCheck(false);
     console.log("Clicked on login");
     try {
-      LoginUser(user.email, user.password);
+      LoginUser(userInfo.email, userInfo.password);
     } catch (error) {
       console.log(error.message);
     }
@@ -61,7 +64,7 @@ const Login = () => {
           name="email"
           onChange={handleChange}
           variant="outlined"
-          value={user.email || ""}
+          value={userInfo.email || ""}
           sx={{ width: "80%", marginBottom: "30px" }}
           error={check}
         />
@@ -71,7 +74,7 @@ const Login = () => {
           onChange={handleChange}
           name="password"
           variant="outlined"
-          value={user.password || ""}
+          value={userInfo.password || ""}
           sx={{ width: "80%", marginBottom: "5px" }}
           error={check}
         />

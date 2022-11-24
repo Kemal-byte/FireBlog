@@ -46,7 +46,7 @@ const Navbar = () => {
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 0, cursor: "pointer" }}
+            sx={{ flexGrow: 0, cursor: "pointer", marginRight: "auto" }}
             onClick={() => navigate("/")}
           >
             FireBlog

@@ -1,5 +1,7 @@
 import { Container, TextField } from "@mui/material";
 import React from "react";
+import { HeaderLogo, Logo } from "../Styling/Login.styled";
+import Button from "@mui/material/Button";
 
 const NewBlog = () => {
   return (
@@ -10,10 +12,16 @@ const NewBlog = () => {
         justifyContent: "center",
         flexDirection: "column",
         backgroundColor: "#fff",
-        width: "500px",
+        maxWidth: "500px",
         minHeight: "700px",
+        borderRadius: "15px",
+        textAlign: "center",
+        padding: "1rem",
+        alignItems: "center",
       }}
     >
+      <Logo src="./newBlog.jpg" />
+      <HeaderLogo>Thank you for your kind contribution</HeaderLogo>
       <TextField
         id="outlined-basic"
         label="Title"
@@ -46,6 +54,9 @@ const NewBlog = () => {
         sx={{ width: "80%", margin: "30px auto" }}
         // error={check}
       />
+      <Button variant="contained" sx={{ width: "50%", minWidth: "150px" }}>
+        Contained
+      </Button>
     </Container>
   );
 };
