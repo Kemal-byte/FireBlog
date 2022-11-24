@@ -12,7 +12,7 @@ import {
 console.log(import.meta.env.VITE_apiKey);
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD3lzS3q3XY1hC42vtS9DNpq9aafDiO_Zo",
+  apiKey: import.meta.env.VITE_apiKey,
   authDomain: import.meta.env.VITE_authDomain,
   projectId: import.meta.env.VITE_projectId,
   storageBucket: import.meta.env.VITE_storageBucket,
