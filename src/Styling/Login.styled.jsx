@@ -6,7 +6,7 @@ const LoginContainer = styled.div`
   max-height: 100%;
   max-width: 100%;
   min-width: 247px;
-  border-radius: 5px;
+  border-radius: 15px;
   background-color: #fff;
   padding: 2rem;
   text-align: center;
@@ -14,6 +14,7 @@ const LoginContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 export const HeaderLogo = styled.div`
   font-size: 1.5rem;
@@ -30,5 +31,26 @@ export const Logo = styled.img`
   width: 50%;
   min-width: 200px;
   display: block;
+`;
+
+export const Anchortag = styled.a`
+  font-size: 0.8rem;
+  color: #17a3db;
+  cursor: pointer;
+  display: block;
+  :hover {
+    text-decoration: underline;
+  }
+`;
+
+export const BlobRight = styled.img`
+  position: absolute;
+  top: 0px;
+  right: 0;
+`;
+export const BlobLeft = styled.img`
+  position: absolute;
+  bottom: 0;
+  left: 0;
 `;
 export default LoginContainer;

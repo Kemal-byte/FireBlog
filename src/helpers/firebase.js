@@ -5,6 +5,8 @@ import {
   getAuth,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+
+import { toast } from "react-toastify";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -21,21 +23,4 @@ const firebaseConfig = {
 };
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-export async function SignUp(email, password) {
-  try {
-    const user = await createUserWithEmailAndPassword(auth, email, password);
-  } catch (error) {
-    console.log(error.message);
-  }
-}
-
-export async function LoginUser(email, password) {
-  try {
-    const user = await signInWithEmailAndPassword(auth, email, password);
-    console.log(user);
-  } catch (error) {
-    console.log(error.message);
-  }
-}
+export const auth = getAuth(app);
