@@ -5,15 +5,13 @@ import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { nanoid } from "nanoid";
-import { data } from "../helpers/data";
 
 const Cards = ({ item }) => {
   const navigate = useNavigate();
 
   return (
     <Card
-      sx={{ maxWidth: 345 }}
+      sx={{ maxWidth: 345, maxHeight: 332 }}
       onClick={() => navigate(`/details`, { state: item })}
     >
       <CardActionArea>
@@ -27,7 +25,11 @@ const Cards = ({ item }) => {
           <Typography gutterBottom variant="h5" component="div">
             {item?.title}
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography
+            variant="body2"
+            color="text.secondary"
+            sx={{ height: "120px", overflow: "hidden" }}
+          >
             {item?.desc}
           </Typography>
         </CardContent>
