@@ -9,9 +9,9 @@ import { useLocation } from "react-router-dom";
 const NewBlog = () => {
   const [blog, setBlog] = useState({ title: "", img: "", desc: "" });
   const { state } = useLocation();
-  console.log(state);
+
   useEffect(() => {
-    if (state.title !== "") {
+    if (state !== null) {
       setBlog({ title: state.title, img: state.img, desc: state.desc });
     }
   }, []);
@@ -25,12 +25,8 @@ const NewBlog = () => {
       };
     });
   }
-  console.log("suspected blog is");
-  console.log(blog);
 
   function handleAddBlog() {
-    console.log(blog);
-
     if (blog.title === "" || blog.img === "" || blog.desc === "") {
       toastErrorNotify("You need to fill all the fields");
     } else {

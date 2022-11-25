@@ -16,7 +16,6 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 export function writeUserData(userId, name, image, description) {
-  console.log("userData is called");
   const db = getDatabase();
   const reference = ref(db, "data/" + userId);
   set(reference, {

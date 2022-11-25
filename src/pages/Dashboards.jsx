@@ -9,7 +9,6 @@ const Dashboards = () => {
 
   useEffect(() => {
     function getData() {
-      console.log("Get data is called");
       const db = getDatabase();
       const reference = ref(db, "data/");
       onValue(reference, (snapshot) => {

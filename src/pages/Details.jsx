@@ -13,7 +13,6 @@ const Details = () => {
   const navigate = useNavigate();
 
   function handleEdit() {
-    console.log("Inside handleEdit");
     navigate("/newblog", { state: state });
   }
   return (
