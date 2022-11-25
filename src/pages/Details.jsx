@@ -1,6 +1,7 @@
 import { Container } from "@mui/material";
+import Button from "@mui/material/Button";
 import React from "react";
-import { useLocation } from "react-router-dom";
+import { Navigate, useLocation, useNavigate } from "react-router-dom";
 import DetailsContainer, {
   Desc,
   Heading,
@@ -9,7 +10,12 @@ import DetailsContainer, {
 
 const Details = () => {
   const { state } = useLocation();
-  console.log(state);
+  const navigate = useNavigate();
+
+  function handleEdit() {
+    console.log("Inside handleEdit");
+    navigate("/newblog", { state: state });
+  }
   return (
     <Container>
       <DetailsContainer>
@@ -18,6 +24,13 @@ const Details = () => {
         <IMG src={state?.img} />
         <hr />
         <Desc>{state?.desc}</Desc>
+        <Button
+          variant="contained"
+          sx={{ width: "50%", minWidth: "150px" }}
+          onClick={handleEdit}
+        >
+          Edit
+        </Button>
       </DetailsContainer>
     </Container>
   );

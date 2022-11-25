@@ -5,6 +5,8 @@ const DetailsContainer = styled.article`
   display: flex;
   padding: 2rem;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: #a7c9d7;
   height: 100%;
   gap: 1.5rem;

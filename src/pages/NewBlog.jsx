@@ -1,11 +1,20 @@
 import { Container, TextField } from "@mui/material";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HeaderLogo, Logo } from "../Styling/Login.styled";
 import Button from "@mui/material/Button";
 import { nanoid } from "nanoid";
 import { writeUserData } from "../helpers/firebase";
+import { toastErrorNotify, toastSuccessNotify } from "../helpers/ToastNotify";
+import { useLocation } from "react-router-dom";
 const NewBlog = () => {
   const [blog, setBlog] = useState({ title: "", img: "", desc: "" });
+  const { state } = useLocation();
+  console.log(state);
+  useEffect(() => {
+    if (state.title !== "") {
+      setBlog({ title: state.title, img: state.img, desc: state.desc });
+    }
+  }, []);
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -16,9 +25,24 @@ const NewBlog = () => {
       };
     });
   }
+  console.log("suspected blog is");
+  console.log(blog);
+
   function handleAddBlog() {
     console.log(blog);
-    writeUserData(nanoid(), blog.title, blog.img, blog.desc);
+
+    if (blog.title === "" || blog.img === "" || blog.desc === "") {
+      toastErrorNotify("You need to fill all the fields");
+    } else {
+      if (state.item === "") {
+        writeUserData(nanoid(), blog.title, blog.img, blog.desc);
+        toastSuccessNotify("Great! You have successfully added");
+      } else {
+        toastSuccessNotify("Updated successfully");
+        writeUserData(state.item, blog.title, blog.img, blog.desc);
+      }
+      setBlog({ title: "", img: "", desc: "" });
+    }
   }
   return (
     <Container
