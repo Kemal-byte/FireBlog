@@ -8,20 +8,14 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Avatar from "../Styling/Navbar.style";
 import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { AuthContext } from "../Context/AuthContextProvider";
 import { auth } from "../helpers/firebase";
 
 const Navbar = () => {
-  //   const [auth, setAuth] = useState(true);?
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
   const { user, setUser } = useContext(AuthContext);
-
-  // onAuthStateChanged(auth, (currentUser) => {
-  //   setUser(currentUser);
-  //   console.log(currentUser);
-  // });
 
   const handleKapali = () => {
     setAnchorEl(null);
@@ -29,7 +23,6 @@ const Navbar = () => {
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
-    // console.log(event.currentTarget);
   };
 
   const handleClose = async () => {

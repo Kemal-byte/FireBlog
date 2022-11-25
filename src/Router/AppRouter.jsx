@@ -18,7 +18,6 @@ const AppRouter = () => {
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      console.log(currentUser);
     });
   }, []);
   return (
@@ -29,7 +28,7 @@ const AppRouter = () => {
         <Route index element={<Dashboards />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/details/:id" element={<PrivateRouter />}>
+        <Route path="/details" element={<PrivateRouter />}>
           <Route path="" element={<Details />} />
         </Route>
 

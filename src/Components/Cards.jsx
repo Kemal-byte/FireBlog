@@ -6,12 +6,16 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { nanoid } from "nanoid";
+import { data } from "../helpers/data";
 
 const Cards = ({ item }) => {
   const navigate = useNavigate();
-  const id = nanoid();
+
   return (
-    <Card sx={{ maxWidth: 345 }} onClick={() => navigate(`/details/${id}`)}>
+    <Card
+      sx={{ maxWidth: 345 }}
+      onClick={() => navigate(`/details`, { state: item })}
+    >
       <CardActionArea>
         <CardMedia
           component="img"

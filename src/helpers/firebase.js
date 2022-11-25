@@ -1,17 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-
-import { toast } from "react-toastify";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-console.log(import.meta.env.VITE_apiKey);
+import { getAuth } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_apiKey,
@@ -24,3 +14,14 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+
+export function writeUserData(userId, name, image, description) {
+  console.log("userData is called");
+  const db = getDatabase();
+  const reference = ref(db, "data/" + userId);
+  set(reference, {
+    title: name,
+    img: image,
+    desc: description,
+  });
+}
