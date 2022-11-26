@@ -17,7 +17,7 @@ import { AuthContext } from "../Context/AuthContextProvider";
 const Login = () => {
   const [userInfo, setUserInfo] = useState({ email: "", password: "" });
   const [check, setCheck] = useState(false);
-  const { user, setUser } = useContext(AuthContext);
+  const { setUser } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -45,7 +45,6 @@ const Login = () => {
 
   function handleLogin() {
     setCheck(false);
-    console.log("Clicked on login");
     try {
       LoginUser(userInfo.email, userInfo.password);
     } catch (error) {

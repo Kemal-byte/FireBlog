@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./App.css";
 import AppRouter from "./Router/AppRouter";
 import AuthContextProvider from "./Context/AuthContextProvider";

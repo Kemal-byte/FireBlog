@@ -8,28 +8,31 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import Avatar from "../Styling/Navbar.style";
 import { useNavigate } from "react-router-dom";
-import { onAuthStateChanged, signOut } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { AuthContext } from "../Context/AuthContextProvider";
 import { auth } from "../helpers/firebase";
 
 const Navbar = () => {
-  //   const [auth, setAuth] = useState(true);?
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
   const { user, setUser } = useContext(AuthContext);
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-    console.log(currentUser);
-  });
+  const handleKapali = () => {
+    setAnchorEl(null);
+  };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
   const handleClose = async () => {
+    handleKapali();
     await signOut(auth);
     navigate("/login");
+  };
+  const handleNewBlog = () => {
+    handleKapali();
+    navigate("/newblog");
   };
 
   return (
@@ -68,10 +71,10 @@ const Navbar = () => {
                   horizontal: "right",
                 }}
                 open={Boolean(anchorEl)}
-                onClose={handleClose}
+                onClose={handleKapali}
               >
                 <MenuItem onClick={handleClose}>Logout</MenuItem>
-                <MenuItem onClick={handleClose}>Add New Blog</MenuItem>
+                <MenuItem onClick={handleNewBlog}>Add New Blog</MenuItem>
               </Menu>
             </div>
           )}

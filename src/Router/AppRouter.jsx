@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
@@ -8,8 +8,18 @@ import Dashboards from "../pages/Dashboards";
 import { GlobalStyles } from "../Styling/GlobalStyles";
 import PrivateRouter from "./PrivateRouter";
 import Navbar from "../Components/Navbar";
+import { AuthContext } from "../Context/AuthContextProvider";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../helpers/firebase";
 
 const AppRouter = () => {
+  const { setUser } = useContext(AuthContext);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+  }, []);
   return (
     <BrowserRouter>
       <GlobalStyles />
@@ -18,7 +28,7 @@ const AppRouter = () => {
         <Route index element={<Dashboards />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/details/:id" element={<PrivateRouter />}>
+        <Route path="/details" element={<PrivateRouter />}>
           <Route path="" element={<Details />} />
         </Route>
 
